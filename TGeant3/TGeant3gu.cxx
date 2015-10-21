@@ -688,7 +688,9 @@ void eustep(){
             for(Int_t i=0; i<3; i++)geant3->Gcmore()->p2[i] = geant3->Gcmore()->p3[i];  //call ucopy(p3,p2,3)
             for(Int_t i=0; i<3; i++)geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; //call ucopy(vect,p3,3)
             icont = 0;
-         }
+       	    geant3->StopTrack();
+	    geant3->Gcmore()->iclose = 0;
+	 }
       }
    }else if(cflag==2) {
    //   printf("geant3->Gconst()->big = %F" ,geant3->Gconst());
@@ -737,6 +739,8 @@ void eustep(){
             for(Int_t i=0; i<3; i++)geant3->Gcmore()->p2[i] = geant3->Gcmore()->p3[i];  //call ucopy(p3,p2,3)
             for(Int_t i=0; i<3; i++)geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; //call ucopy(vect,p3,3)
             icont = 0;
+ 	    geant3->StopTrack();
+	    geant3->Gcmore()->iclose = 0;
          }
       }
    }
