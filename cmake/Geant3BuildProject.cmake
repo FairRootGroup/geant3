@@ -46,6 +46,12 @@ if(Geant3_INSTALL_DATA)
     ${PROJECT_SOURCE_DIR}/data
     DESTINATION ${CMAKE_INSTALL_PREFIX}/share/Geant3-${Geant3_VERSION}
   )
+  INSTALL(CODE "execute_process( \
+    COMMAND ${CMAKE_COMMAND} -E create_symlink \
+    ${CMAKE_INSTALL_PREFIX}/share/Geant3-${Geant3_VERSION} \
+    ${CMAKE_INSTALL_PREFIX}/share/geant3   \
+    )"
+  )
 endif()
 
 #
