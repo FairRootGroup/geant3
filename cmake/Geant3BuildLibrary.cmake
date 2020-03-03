@@ -13,7 +13,6 @@
 #---CMake required version -----------------------------------------------------
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
-<<<<<<< HEAD
 #-------------------------------------------------------------------------------
 # Define installed names
 #
@@ -22,12 +21,6 @@ set(library_name geant321)
 #-------------------------------------------------------------------------------
 # Includes
 #
-=======
-#-- ROOT (required) ------------------------------------------------------------
-if(NOT ROOT_FOUND)
-  find_package(ROOT REQUIRED)
-endif(NOT ROOT_FOUND)
->>>>>>> add -std=legacy to gfortran flags for version 8
 include_directories(${ROOT_INCLUDE_DIRS})
 include_directories(${VMC_INCLUDE_DIRS})
 
