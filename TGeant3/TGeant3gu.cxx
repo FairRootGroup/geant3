@@ -706,7 +706,6 @@ extern "C" type_of_call
             geant3->Gcmore()->cleng[0] = geant3->Gcmore()->cleng[1];
             geant3->Gcmore()->cleng[1] = geant3->Gcmore()->cleng[2];
             geant3->Gcmore()->cleng[2] = geant3->Gctrak()->sleng;
-<<<<<<< HEAD
             for (Int_t i = 0; i < 3; i++)
                geant3->Gcmore()->p1[i] = geant3->Gcmore()->p2[i]; // call ucopy(p2,p1,3)
             for (Int_t i = 0; i < 3; i++)
@@ -725,6 +724,8 @@ extern "C" type_of_call
                for (Int_t i = 0; i < 3; i++)
                   geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; // call ucopy(vect,p3,3)
                icont = 0;
+               geant3->StopTrack();
+               geant3->Gcmore()->iclose = 0;
             }
          }
       } else if (cflag == 2) {
@@ -781,66 +782,9 @@ extern "C" type_of_call
                for (Int_t i = 0; i < 3; i++)
                   geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; // call ucopy(vect,p3,3)
                icont = 0;
+               geant3->StopTrack();
+               geant3->Gcmore()->iclose = 0;
             }
-=======
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p1[i] = geant3->Gcmore()->p2[i];  //call ucopy(p2,p1,3)
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p2[i] = geant3->Gcmore()->p3[i];  //call ucopy(p3,p2,3)
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; //call ucopy(vect,p3,3)
-            icont = 0;
-       	    geant3->StopTrack();
-	    geant3->Gcmore()->iclose = 0;
-	 }
-      }
-   }else if(cflag==2) {
-   //   printf("geant3->Gconst()->big = %F" ,geant3->Gconst());
-      if(icc == 0) prdist2=geant3->Gconst()->big;
-      d2x = (geant3->Gcmore()->wire2[1]-geant3->Gcmore()->wire1[1])*
-            (geant3->Gcmore()->wire1[2]-geant3->Gctrak()->vect[2])-
-            (geant3->Gcmore()->wire2[2]-geant3->Gcmore()->wire1[2])*
-            (geant3->Gcmore()->wire1[1]-geant3->Gctrak()->vect[1]);
-
-      d2y = (geant3->Gcmore()->wire2[2]-geant3->Gcmore()->wire1[2])*
-            (geant3->Gcmore()->wire1[0]-geant3->Gctrak()->vect[0])-
-            (geant3->Gcmore()->wire2[0]-geant3->Gcmore()->wire1[0])*
-            (geant3->Gcmore()->wire1[2]-geant3->Gctrak()->vect[2]);
-
-      d2z = (geant3->Gcmore()->wire2[0]-geant3->Gcmore()->wire1[0])*
-            (geant3->Gcmore()->wire1[1]-geant3->Gctrak()->vect[1])-
-            (geant3->Gcmore()->wire2[1]-geant3->Gcmore()->wire1[1])*
-            (geant3->Gcmore()->wire1[0]-geant3->Gctrak()->vect[0]);
-
-      amodd =(geant3->Gcmore()->wire2[0]-geant3->Gcmore()->wire1[0])*
-             (geant3->Gcmore()->wire2[0]-geant3->Gcmore()->wire1[0])+
-             (geant3->Gcmore()->wire2[1]-geant3->Gcmore()->wire1[1])*
-             (geant3->Gcmore()->wire2[1]-geant3->Gcmore()->wire1[1])+
-             (geant3->Gcmore()->wire2[2]-geant3->Gcmore()->wire1[2])*
-             (geant3->Gcmore()->wire2[2]-geant3->Gcmore()->wire1[2]);
-
-      dist2 = (d2x*d2x + d2y*d2y + d2z*d2z)/amodd;
-
-//   distance between the track point and the wire
-      if((TMath::Sqrt(dist2)-TMath::Sqrt(prdist2)) < 1.e-3) {
-         prdist2 = dist2;
-         icc=1;
-         icont = 1;
-         geant3->Gcmore()->cleng[0] = geant3->Gcmore()->cleng[1];
-         geant3->Gcmore()->cleng[1] = geant3->Gcmore()->cleng[2];
-         geant3->Gcmore()->cleng[2] = geant3->Gctrak()->sleng;
-         for(Int_t i=0; i<3; i++)geant3->Gcmore()->p1[i] = geant3->Gcmore()->p2[i];  //call ucopy(p2,p1,3)
-         for(Int_t i=0; i<3; i++)geant3->Gcmore()->p2[i] = geant3->Gcmore()->p3[i];  //call ucopy(p3,p2,3)
-         for(Int_t i=0; i<3; i++)geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; //call ucopy(vect,p3,3)
-      }else{ //     store the first point of increasing distance
-         if(icont == 1){
-            geant3->Gcmore()->cleng[0] = geant3->Gcmore()->cleng[1];
-            geant3->Gcmore()->cleng[1] = geant3->Gcmore()->cleng[2];
-            geant3->Gcmore()->cleng[2] = geant3->Gctrak()->sleng;
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p1[i] = geant3->Gcmore()->p2[i];  //call ucopy(p2,p1,3)
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p2[i] = geant3->Gcmore()->p3[i];  //call ucopy(p3,p2,3)
-            for(Int_t i=0; i<3; i++)geant3->Gcmore()->p3[i] = geant3->Gctrak()->vect[i]; //call ucopy(vect,p3,3)
-            icont = 0;
- 	    geant3->StopTrack();
-	    geant3->Gcmore()->iclose = 0;
->>>>>>> Changes to be able to properly use geane.
          }
       }
 
